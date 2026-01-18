@@ -1,115 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JSON to TypeScript Converter | DevUtils</title>
+    <meta charset="UTF-8"><title>JSON to TypeScript | Jesse DevUtils</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        body { background-color: #0f172a; font-family: 'Fira Code', monospace; }
-        textarea { scrollbar-width: thin; scrollbar-color: #334155 #0f172a; }
-        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
-    </style>
 </head>
-<body class="text-slate-200 min-h-screen p-4 md:p-8">
-    <div class="max-w-7xl mx-auto">
-        <header class="mb-8 flex justify-between items-center">
-            <div>
-                <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
-                    JSON → TypeScript
-                </h1>
-                <p class="text-slate-400 text-sm">Instant Interface Generator</p>
-            </div>
-            <button onclick="copyToClipboard()" class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all shadow-lg flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="Wait for copy... 8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                </svg>
-                Copy Output
-            </button>
-        </header>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 h-[70vh]">
-            <div class="flex flex-col h-full">
-                <label class="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-2 ml-1">Input JSON</label>
-                <textarea id="jsonInput" placeholder='{ "id": 1, "name": "Gemini" }'
-                    class="glass flex-1 p-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all resize-none text-blue-300"></textarea>
-            </div>
-
-            <div class="flex flex-col h-full">
-                <label class="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-2 ml-1">TypeScript Interface</label>
-                <textarea id="tsOutput" readonly
-                    class="glass flex-1 p-4 rounded-xl focus:outline-none resize-none text-emerald-400"></textarea>
-            </div>
+<body class="bg-slate-900 text-white min-h-screen font-sans">
+    <nav class="bg-slate-800 border-b border-slate-700 p-4 mb-8">
+        <div class="max-w-6xl mx-auto flex flex-wrap gap-4 text-sm font-medium">
+            <span class="text-slate-400 mr-2 uppercase">My Tools:</span>
+            <a href="#" class="text-white border-b-2 border-teal-500">JSON &rarr; TS</a>
+            <a href="https://jesse-svg-utils.netlify.app" class="text-teal-400 hover:text-white transition">SVG &rarr; Tailwind</a>
+            <a href="https://jesse-html-utils.netlify.app" class="text-teal-400 hover:text-white transition">HTML Encoder</a>
+            <a href="https://jesse-css-utils.netlify.app" class="text-teal-400 hover:text-white transition">PX &rarr; REM</a>
+            <a href="https://jesse-lorem-utils.netlify.app" class="text-teal-400 hover:text-white transition">Dev Lorem</a>
         </div>
+    </nav>
 
-        <div id="error" class="mt-4 text-rose-400 text-sm opacity-0 transition-opacity">Invalid JSON detected</div>
+    <div class="max-w-4xl mx-auto px-8">
+        <h1 class="text-3xl font-bold text-teal-400 mb-2">JSON to TypeScript</h1>
+        <p class="text-slate-400 mb-8">Convert JSON objects into clean TypeScript interfaces instantly.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <textarea id="input" class="w-full h-96 bg-slate-800 p-4 rounded border border-slate-700 outline-none focus:ring-2 focus:ring-teal-500" placeholder='Paste JSON here...'></textarea>
+            <textarea id="output" readonly class="w-full h-96 bg-slate-950 p-4 rounded border border-slate-800 text-teal-200 font-mono" placeholder="TypeScript result..."></textarea>
+        </div>
     </div>
-
-    <script>
-        const jsonInput = document.getElementById('jsonInput');
-        const tsOutput = document.getElementById('tsOutput');
-        const errorDisplay = document.getElementById('error');
-
-        jsonInput.addEventListener('input', () => {
-            const val = jsonInput.value.trim();
-            if (!val) {
-                tsOutput.value = '';
-                errorDisplay.style.opacity = '0';
-                return;
-            }
-
-            try {
-                const parsed = JSON.parse(val);
-                errorDisplay.style.opacity = '0';
-                const interfaces = generateTypeScript(parsed, 'RootObject');
-                tsOutput.value = interfaces;
-            } catch (e) {
-                errorDisplay.style.opacity = '1';
-                errorDisplay.innerText = "Invalid JSON: " + e.message;
-            }
-        });
-
-        function generateTypeScript(obj, rootName) {
-            let interfaces = [];
-            
-            function getType(value, key) {
-                if (Array.isArray(value)) {
-                    if (value.length === 0) return 'any[]';
-                    return `${getType(value[0], key)}[]`;
-                }
-                if (value === null) return 'any';
-                if (typeof value === 'object') {
-                    const interfaceName = key.charAt(0).toUpperCase() + key.slice(1);
-                    buildInterface(value, interfaceName);
-                    return interfaceName;
-                }
-                return typeof value;
-            }
-
-            function buildInterface(data, name) {
-                let str = `export interface ${name} {\n`;
-                for (const key in data) {
-                    str += `  ${key}: ${getType(data[key], key)};\n`;
-                }
-                str += `}\n\n`;
-                if (!interfaces.some(i => i.startsWith(`export interface ${name}`))) {
-                    interfaces.push(str);
-                }
-            }
-
-            buildInterface(obj, rootName);
-            return interfaces.reverse().join('');
-        }
-
-        async function copyToClipboard() {
-            try {
-                await navigator.clipboard.writeText(tsOutput.value);
-                alert('Copied to clipboard!');
-            } catch (err) {
-                console.error('Failed to copy!', err);
-            }
-        }
-    </script>
 </body>
 </html>
