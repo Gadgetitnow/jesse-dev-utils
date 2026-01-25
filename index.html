@@ -27,8 +27,9 @@
                 <div class="h-10 w-10 bg-[#00ff41] text-black rounded-xl flex items-center justify-center font-black shadow-lg shadow-[#00ff41]/20">M</div>
                 <h1 class="text-white font-bold text-xl tracking-tighter">DevUtils<span class="text-[#00ff41]">.io</span></h1>
             </div>
-            <div class="hidden md:flex items-center gap-4">
-                <span class="text-[10px] font-bold text-[#00ff41] bg-[#003b11]/30 px-3 py-1 rounded-full border border-[#00ff41]/20 animate-pulse">
+            <div class="flex items-center gap-6">
+                <a href="blog.html" class="text-xs font-bold text-slate-400 hover:text-[#00ff41] transition-colors tracking-widest uppercase">Archives</a>
+                <span class="hidden md:block text-[10px] font-bold text-[#00ff41] bg-[#003b11]/30 px-3 py-1 rounded-full border border-[#00ff41]/20 animate-pulse">
                     MATRIX_CORE_STABLE
                 </span>
             </div>
@@ -45,75 +46,31 @@
             </p>
         </section>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <a href="json-to-ts.html" class="tool-card p-8 rounded-3xl group">
-                <h3 class="text-2xl font-bold text-[#00ff41] mb-3 uppercase tracking-widest">JSON &rarr; TS</h3>
-                <p class="text-slate-400 text-sm leading-relaxed mb-6">Deep-parse JSON structures into clean TypeScript interfaces instantly.</p>
-                <span class="text-[10px] text-white font-bold group-hover:text-[#00ff41] transition-colors">INITIATE_CONVERSION _</span>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <a href="json-to-ts.html" class="tool-card p-6 rounded-3xl group">
+                <h3 class="text-xl font-bold text-[#00ff41] mb-2 uppercase tracking-widest">JSON &rarr; TS</h3>
+                <p class="text-slate-400 text-xs leading-relaxed mb-6">Deep-parse JSON structures into clean TypeScript interfaces.</p>
+                <span class="text-[10px] text-white font-bold group-hover:text-[#00ff41] transition-colors">INITIATE _</span>
             </a>
 
-            <a href="svg-to-tailwind.html" class="tool-card p-8 rounded-3xl group">
-                <h3 class="text-2xl font-bold text-[#00ff41] mb-3 uppercase tracking-widest">SVG &rarr; TW</h3>
-                <p class="text-slate-400 text-sm leading-relaxed mb-6">Strip vector bloat and inject utility-first Tailwind CSS classes.</p>
-                <span class="text-[10px] text-white font-bold group-hover:text-[#00ff41] transition-colors">OPTIMIZE_VECTOR _</span>
+            <a href="svg-to-tailwind.html" class="tool-card p-6 rounded-3xl group">
+                <h3 class="text-xl font-bold text-[#00ff41] mb-2 uppercase tracking-widest">SVG &rarr; TW</h3>
+                <p class="text-slate-400 text-xs leading-relaxed mb-6">Strip vector bloat and inject utility-first Tailwind classes.</p>
+                <span class="text-[10px] text-white font-bold group-hover:text-[#00ff41] transition-colors">OPTIMIZE _</span>
             </a>
 
-            <a href="html-encoder.html" class="tool-card p-8 rounded-3xl group">
-                <h3 class="text-2xl font-bold text-[#00ff41] mb-3 uppercase tracking-widest">Encoder</h3>
-                <p class="text-slate-400 text-sm leading-relaxed mb-6">Sanitize HTML strings with enterprise-grade entity encoding.</p>
-                <span class="text-[10px] text-white font-bold group-hover:text-[#00ff41] transition-colors">SECURE_ENTITIES _</span>
+            <a href="html-encoder.html" class="tool-card p-6 rounded-3xl group">
+                <h3 class="text-xl font-bold text-[#00ff41] mb-2 uppercase tracking-widest">Encoder</h3>
+                <p class="text-slate-400 text-xs leading-relaxed mb-6">Sanitize HTML strings with enterprise-grade entity encoding.</p>
+                <span class="text-[10px] text-white font-bold group-hover:text-[#00ff41] transition-colors">SECURE _</span>
+            </a>
+
+            <a href="blog.html" class="tool-card p-6 rounded-3xl group border-dashed">
+                <h3 class="text-xl font-bold text-white mb-2 uppercase tracking-widest">Archives</h3>
+                <p class="text-slate-400 text-xs leading-relaxed mb-6">Educational transmissions on enterprise engineering best practices.</p>
+                <span class="text-[10px] text-[#00ff41] font-bold">READ_DATA _</span>
             </a>
         </div>
     </main>
 
-    <footer class="relative z-10 border-t border-[#003b11] bg-black/80 py-20">
-        <div class="max-w-6xl mx-auto px-6 text-center">
-            <h4 class="text-white font-bold text-xl mb-4 uppercase tracking-widest">Scale your Output</h4>
-            <p class="text-slate-500 mb-10 max-w-lg mx-auto text-sm">Automate your workflow with our Premium API access. Built for high-volume enterprise teams.</p>
-            <div class="flex flex-wrap justify-center gap-4 mb-16">
-                <button class="bg-[#00ff41] text-black font-black py-4 px-10 rounded-xl hover:bg-white transition-all uppercase tracking-widest text-xs">Access Premium API</button>
-                <button class="bg-transparent text-[#00ff41] font-bold py-4 px-10 rounded-xl border border-[#003b11] hover:border-[#00ff41] transition-all uppercase tracking-widest text-xs">Donate to Network</button>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left border-t border-[#003b11] pt-12">
-                <div>
-                    <p class="text-[#00ff41] font-bold text-[10px] mb-2">SYSTEM_INFO</p>
-                    <p class="text-slate-600 text-xs leading-relaxed">Local Edge Processing active. No data persists on the central server. Privacy is the default.</p>
-                </div>
-                <div>
-                    <p class="text-[#00ff41] font-bold text-[10px] mb-2">NETWORK_STATUS</p>
-                    <p class="text-slate-600 text-xs leading-relaxed">Vercel Edge Nodes: Online<br>Global Latency: < 20ms<br>Security: Encrypted</p>
-                </div>
-                <div>
-                    <p class="text-[#00ff41] font-bold text-[10px] mb-2">OWNER_ID</p>
-                    <p class="text-slate-600 text-xs leading-relaxed">Jesse DevUtils Network<br>&copy; 2026<br>Construct Version 1.0.4</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        const canvas = document.getElementById('matrix-canvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-        const characters = "01";
-        const fontSize = 16;
-        const columns = canvas.width / fontSize;
-        const drops = [];
-        for (let x = 0; x < columns; x++) drops[x] = 1;
-        function draw() {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)'; ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#00ff41'; ctx.font = fontSize + 'px monospace';
-            for (let i = 0; i < drops.length; i++) {
-                const text = characters.charAt(Math.floor(Math.random() * characters.length));
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
-                drops[i]++;
-            }
-        }
-        setInterval(draw, 33);
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-        });
-    </script>
-</body>
-</html>
+    <footer class="relative z-10 border
