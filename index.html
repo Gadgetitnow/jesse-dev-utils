@@ -3,65 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML Entity Encoder Matrix | DevUtils.io Enterprise</title>
+    <meta name="google-site-verification" content="KRXE3i5XtmapzWd_uN-HPDOrvDEEWuiggkTQ34K6Zzg" />
+    <title>DevUtils.io | Matrix Developer Utility Network</title>
+    <meta name="description" content="The ultimate Matrix-themed developer toolkit. Secure, private, and high-performance tools for JSON, SVG, and HTML.">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap');
         body { background-color: #000; font-family: 'Fira Code', monospace; overflow-x: hidden; }
-        #matrix-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.15; pointer-events: none; }
-        .matrix-glass { background: rgba(0, 15, 5, 0.85); backdrop-filter: blur(8px); border: 1px solid rgba(0, 255, 70, 0.2); }
-        textarea { background: rgba(0, 5, 0, 0.9) !important; color: #00ff41 !important; border: 1px solid #003b11 !important; }
-        .matrix-btn { background: #00ff41; color: #000; font-weight: 900; transition: all 0.3s ease; }
-        .matrix-btn:hover { background: #fff; box-shadow: 0 0 20px #00ff41; }
+        #matrix-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.1; pointer-events: none; }
+        .matrix-glass { background: rgba(0, 15, 5, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(0, 255, 70, 0.2); }
+        .tool-card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(0, 20, 10, 0.6); border: 1px solid #003b11; }
+        .tool-card:hover { transform: translateY(-10px); border-color: #00ff41; box-shadow: 0 0 30px rgba(0, 255, 65, 0.2); }
+        .matrix-glow { text-shadow: 0 0 10px rgba(0, 255, 65, 0.8); }
     </style>
 </head>
-<body class="text-slate-200 min-h-screen">
+<body class="text-slate-200 min-h-screen selection:bg-[#00ff41]/30">
+
     <canvas id="matrix-canvas"></canvas>
-    
+
     <nav class="matrix-glass border-b border-[#003b11] p-4 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <a href="index.html" class="flex items-center gap-3">
-                <div class="h-8 w-8 bg-[#00ff41] text-black rounded flex items-center justify-center font-black">M</div>
-                <h1 class="text-white font-bold text-lg tracking-tighter">DevUtils<span class="text-[#00ff41]">.io</span></h1>
-            </a>
-            <div class="text-[10px] text-[#00ff41] font-bold tracking-widest animate-pulse">ENTITY_ENCRYPT // SECURE</div>
+            <div class="flex items-center gap-3">
+                <div class="h-10 w-10 bg-[#00ff41] text-black rounded-xl flex items-center justify-center font-black shadow-lg shadow-[#00ff41]/20">M</div>
+                <h1 class="text-white font-bold text-xl tracking-tighter">DevUtils<span class="text-[#00ff41]">.io</span></h1>
+            </div>
+            <div class="hidden md:flex items-center gap-4">
+                <span class="text-[10px] font-bold text-[#00ff41] bg-[#003b11]/30 px-3 py-1 rounded-full border border-[#00ff41]/20 animate-pulse">
+                    MATRIX_CORE_STABLE
+                </span>
+            </div>
         </div>
     </nav>
 
-    <main class="relative z-10 max-w-7xl mx-auto px-6 py-12">
-        <div class="text-center mb-10">
-            <h2 class="text-4xl font-black text-white mb-2 uppercase tracking-widest">Construct: HTML Encoder</h2>
-            <p class="text-[#00ff41] text-sm opacity-80 font-bold">SANITIZING STRINGS FOR PRODUCTION ENVIRONMENTS</p>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div class="space-y-4">
-                <label class="text-[10px] font-bold uppercase tracking-widest text-[#00ff41]">Raw String</label>
-                <textarea id="rawIn" class="w-full h-[500px] rounded-xl p-6 text-sm outline-none" placeholder="<div>Enter HTML here...</div>"></textarea>
-            </div>
-            <div class="space-y-4">
-                <label class="text-[10px] font-bold uppercase tracking-widest text-[#00ff41]">Encoded Entity</label>
-                <div class="relative">
-                    <textarea id="entOut" readonly class="w-full h-[500px] rounded-xl p-6 text-sm outline-none" placeholder="Encoded entities will appear here..."></textarea>
-                    <button onclick="copyToClipboard()" class="absolute top-4 right-4 matrix-btn py-2 px-4 rounded text-[10px]">Copy</button>
-                </div>
-            </div>
-        </div>
-
-        <section class="mt-24 matrix-glass rounded-3xl p-12 max-w-4xl mx-auto">
-            <h2 class="text-2xl font-bold text-white mb-6 uppercase tracking-widest">Security Protocol: Entity Encoding</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-slate-400 text-sm leading-relaxed">
-                <div>
-                    <h3 class="text-[#00ff41] font-bold mb-2 uppercase">XSS Prevention</h3>
-                    <p>Our enterprise encoder converts dangerous characters like < and > into safe HTML entities, providing a critical layer of defense against Cross-Site Scripting attacks.</p>
-                </div>
-                <div>
-                    <h3 class="text-[#00ff41] font-bold mb-2 uppercase">Browser Compatibility</h3>
-                    <p>Ensure your data renders correctly across all legacy and modern browsers by following strict W3C entity encoding standards.</p>
-                </div>
-            </div>
+    <main class="relative z-10 max-w-6xl mx-auto px-6 py-24">
+        <section class="mb-24 text-center">
+            <h2 class="text-6xl md:text-7xl font-black text-white mb-8 tracking-tighter uppercase">
+                Enter the <span class="text-[#00ff41] matrix-glow">Construct.</span>
+            </h2>
+            <p class="text-slate-400 text-xl max-w-2xl mx-auto leading-relaxed">
+                High-performance, secure developer utilities running on the Vercel Edge. Zero logs. Zero latency. Total privacy.
+            </p>
         </section>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <a href="json-to-ts.html" class="tool-card p-8 rounded-3xl group">
+                <h3 class="text-2xl font-bold text-[#00ff41] mb-3 uppercase tracking-widest">JSON &rarr; TS</h3>
+                <p class="text-slate-400 text-sm leading-relaxed mb-6">Deep-parse JSON structures into clean TypeScript interfaces instantly.</p>
+                <span class="text-[10px] text-white font-bold group-hover:text-[#00ff41] transition-colors">INITIATE_CONVERSION _</span>
+            </a>
+
+            <a href="svg-to-tailwind.html" class="tool-card p-8 rounded-3xl group">
+                <h3 class="text-2xl font-bold text-[#00ff41] mb-3 uppercase tracking-widest">SVG &rarr; TW</h3>
+                <p class="text-slate-400 text-sm leading-relaxed mb-6">Strip vector bloat and inject utility-first Tailwind CSS classes.</p>
+                <span class="text-[10px] text-white font-bold group-hover:text-[#00ff41] transition-colors">OPTIMIZE_VECTOR _</span>
+            </a>
+
+            <a href="html-encoder.html" class="tool-card p-8 rounded-3xl group">
+                <h3 class="text-2xl font-bold text-[#00ff41] mb-3 uppercase tracking-widest">Encoder</h3>
+                <p class="text-slate-400 text-sm leading-relaxed mb-6">Sanitize HTML strings with enterprise-grade entity encoding.</p>
+                <span class="text-[10px] text-white font-bold group-hover:text-[#00ff41] transition-colors">SECURE_ENTITIES _</span>
+            </a>
+        </div>
     </main>
+
+    <footer class="relative z-10 border-t border-[#003b11] bg-black/80 py-20">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <h4 class="text-white font-bold text-xl mb-4 uppercase tracking-widest">Scale your Output</h4>
+            <p class="text-slate-500 mb-10 max-w-lg mx-auto text-sm">Automate your workflow with our Premium API access. Built for high-volume enterprise teams.</p>
+            <div class="flex flex-wrap justify-center gap-4 mb-16">
+                <button class="bg-[#00ff41] text-black font-black py-4 px-10 rounded-xl hover:bg-white transition-all uppercase tracking-widest text-xs">Access Premium API</button>
+                <button class="bg-transparent text-[#00ff41] font-bold py-4 px-10 rounded-xl border border-[#003b11] hover:border-[#00ff41] transition-all uppercase tracking-widest text-xs">Donate to Network</button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left border-t border-[#003b11] pt-12">
+                <div>
+                    <p class="text-[#00ff41] font-bold text-[10px] mb-2">SYSTEM_INFO</p>
+                    <p class="text-slate-600 text-xs leading-relaxed">Local Edge Processing active. No data persists on the central server. Privacy is the default.</p>
+                </div>
+                <div>
+                    <p class="text-[#00ff41] font-bold text-[10px] mb-2">NETWORK_STATUS</p>
+                    <p class="text-slate-600 text-xs leading-relaxed">Vercel Edge Nodes: Online<br>Global Latency: < 20ms<br>Security: Encrypted</p>
+                </div>
+                <div>
+                    <p class="text-[#00ff41] font-bold text-[10px] mb-2">OWNER_ID</p>
+                    <p class="text-slate-600 text-xs leading-relaxed">Jesse DevUtils Network<br>&copy; 2026<br>Construct Version 1.0.4</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script>
         const canvas = document.getElementById('matrix-canvas');
@@ -83,20 +111,9 @@
             }
         }
         setInterval(draw, 33);
-
-        const input = document.getElementById('rawIn');
-        const output = document.getElementById('entOut');
-        input.addEventListener('input', () => {
-            const el = document.createElement('div');
-            el.innerText = input.value;
-            output.value = el.innerHTML;
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth; canvas.height = window.innerHeight;
         });
-
-        function copyToClipboard() {
-            output.select();
-            document.execCommand('copy');
-            alert('SYSTEM: Entity Copied.');
-        }
     </script>
 </body>
 </html>
