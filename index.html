@@ -3,85 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="KRXE3i5XtmapzWd_uN-HPDOrvDEEWuiggkTQ34K6Zzg" />
-    <title>DevUtils.io | 100% Free Professional Developer Tools</title>
-    <meta name="description" content="The ultimate open-source toolkit. Convert JSON to TypeScript, SVG to Tailwind, and HTML entities with zero latency.">
-    <link rel="canonical" href="https://jesse-dev-utils.vercel.app" />
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "DevUtils.io",
-      "operatingSystem": "Any",
-      "applicationCategory": "DeveloperApplication",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-    }
-    </script>
-
+    <title>HTML Entity Encoder Matrix | DevUtils.io Enterprise</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); }
-        .tool-card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-        .tool-card:hover { transform: translateY(-10px); border-color: #2dd4bf; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3); }
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap');
+        body { background-color: #000; font-family: 'Fira Code', monospace; overflow-x: hidden; }
+        #matrix-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.15; pointer-events: none; }
+        .matrix-glass { background: rgba(0, 15, 5, 0.85); backdrop-filter: blur(8px); border: 1px solid rgba(0, 255, 70, 0.2); }
+        textarea { background: rgba(0, 5, 0, 0.9) !important; color: #00ff41 !important; border: 1px solid #003b11 !important; }
+        .matrix-btn { background: #00ff41; color: #000; font-weight: 900; transition: all 0.3s ease; }
+        .matrix-btn:hover { background: #fff; box-shadow: 0 0 20px #00ff41; }
     </style>
 </head>
-<body class="bg-[#020617] text-slate-200 min-h-screen font-sans selection:bg-teal-500/30">
-
-    <nav class="glass border-b border-slate-800 p-4 sticky top-0 z-50">
+<body class="text-slate-200 min-h-screen">
+    <canvas id="matrix-canvas"></canvas>
+    
+    <nav class="matrix-glass border-b border-[#003b11] p-4 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <div class="h-10 w-10 bg-gradient-to-tr from-teal-400 to-blue-600 rounded-xl flex items-center justify-center font-black text-white shadow-lg shadow-teal-500/20">D</div>
-                <h1 class="text-white font-bold text-xl leading-none">DevUtils<span class="text-teal-400">.io</span></h1>
-            </div>
-            <span class="text-xs font-medium text-slate-400 bg-slate-800/50 px-3 py-1 rounded-full border border-slate-700">Enterprise Network Active</span>
+            <a href="index.html" class="flex items-center gap-3">
+                <div class="h-8 w-8 bg-[#00ff41] text-black rounded flex items-center justify-center font-black">M</div>
+                <h1 class="text-white font-bold text-lg tracking-tighter">DevUtils<span class="text-[#00ff41]">.io</span></h1>
+            </a>
+            <div class="text-[10px] text-[#00ff41] font-bold tracking-widest animate-pulse">ENTITY_ENCRYPT // SECURE</div>
         </div>
     </nav>
 
-    <main class="max-w-6xl mx-auto px-6 py-24">
-        <section class="mb-20 text-center">
-            <h2 class="text-6xl md:text-7xl font-black text-white mb-8 tracking-tighter">
-                Build faster. <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-blue-500 to-purple-600 font-extrabold">Ship with confidence.</span>
-            </h2>
-            <p class="text-slate-400 text-xl max-w-2xl mx-auto leading-relaxed">
-                A highly-optimized suite of tools for the modern engineer. Private, secure, and blazingly fast.
-            </p>
-        </section>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <a href="json-to-ts.html" class="tool-card group bg-slate-900/50 p-1 rounded-3xl border border-slate-800">
-                <div class="bg-slate-900 p-8 rounded-[1.4rem] h-full">
-                    <h3 class="text-2xl font-bold text-white mb-3">JSON &rarr; TS</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Instant TypeScript interfaces with recursive object support.</p>
-                </div>
-            </a>
-
-            <a href="svg-to-tailwind.html" class="tool-card group bg-slate-900/50 p-1 rounded-3xl border border-slate-800">
-                <div class="bg-slate-900 p-8 rounded-[1.4rem] h-full">
-                    <h3 class="text-2xl font-bold text-white mb-3">SVG &rarr; Tailwind</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Strip SVG bloat and inject high-performance utility classes.</p>
-                </div>
-            </a>
-
-            <a href="html-encoder.html" class="tool-card group bg-slate-900/50 p-1 rounded-3xl border border-slate-800">
-                <div class="bg-slate-900 p-8 rounded-[1.4rem] h-full">
-                    <h3 class="text-2xl font-bold text-white mb-3">HTML Encoder</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Secure entity encoding for XSS prevention and data safety.</p>
-                </div>
-            </a>
+    <main class="relative z-10 max-w-7xl mx-auto px-6 py-12">
+        <div class="text-center mb-10">
+            <h2 class="text-4xl font-black text-white mb-2 uppercase tracking-widest">Construct: HTML Encoder</h2>
+            <p class="text-[#00ff41] text-sm opacity-80 font-bold">SANITIZING STRINGS FOR PRODUCTION ENVIRONMENTS</p>
         </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="space-y-4">
+                <label class="text-[10px] font-bold uppercase tracking-widest text-[#00ff41]">Raw String</label>
+                <textarea id="rawIn" class="w-full h-[500px] rounded-xl p-6 text-sm outline-none" placeholder="<div>Enter HTML here...</div>"></textarea>
+            </div>
+            <div class="space-y-4">
+                <label class="text-[10px] font-bold uppercase tracking-widest text-[#00ff41]">Encoded Entity</label>
+                <div class="relative">
+                    <textarea id="entOut" readonly class="w-full h-[500px] rounded-xl p-6 text-sm outline-none" placeholder="Encoded entities will appear here..."></textarea>
+                    <button onclick="copyToClipboard()" class="absolute top-4 right-4 matrix-btn py-2 px-4 rounded text-[10px]">Copy</button>
+                </div>
+            </div>
+        </div>
+
+        <section class="mt-24 matrix-glass rounded-3xl p-12 max-w-4xl mx-auto">
+            <h2 class="text-2xl font-bold text-white mb-6 uppercase tracking-widest">Security Protocol: Entity Encoding</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-slate-400 text-sm leading-relaxed">
+                <div>
+                    <h3 class="text-[#00ff41] font-bold mb-2 uppercase">XSS Prevention</h3>
+                    <p>Our enterprise encoder converts dangerous characters like < and > into safe HTML entities, providing a critical layer of defense against Cross-Site Scripting attacks.</p>
+                </div>
+                <div>
+                    <h3 class="text-[#00ff41] font-bold mb-2 uppercase">Browser Compatibility</h3>
+                    <p>Ensure your data renders correctly across all legacy and modern browsers by following strict W3C entity encoding standards.</p>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer class="border-t border-slate-800 bg-slate-950/80 py-20">
-        <div class="max-w-6xl mx-auto px-6 text-center">
-            <h4 class="text-white font-bold text-xl mb-4">Ready to scale your development?</h4>
-            <p class="text-slate-500 mb-8 max-w-lg mx-auto">High-volume users can access our Enterprise API for automated bulk conversions.</p>
-            <div class="flex flex-wrap justify-center gap-4 mb-12">
-                <button class="bg-white text-black font-bold py-3 px-8 rounded-xl hover:bg-slate-200 transition-all">Get Premium API Access</button>
-                <button class="bg-slate-800 text-white font-bold py-3 px-8 rounded-xl hover:bg-slate-700 transition-all border border-slate-700">Support DevUtils</button>
-            </div>
-            <p class="text-slate-600 text-xs">Developed by Jesse DevUtils &bull; &copy; 2026 &bull; Vercel Edge Powered</p>
-        </div>
-    </footer>
+    <script>
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        const characters = "01";
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+        for (let x = 0; x < columns; x++) drops[x] = 1;
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#00ff41'; ctx.font = fontSize + 'px monospace';
+            for (let i = 0; i < drops.length; i++) {
+                const text = characters.charAt(Math.floor(Math.random() * characters.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
+        }
+        setInterval(draw, 33);
+
+        const input = document.getElementById('rawIn');
+        const output = document.getElementById('entOut');
+        input.addEventListener('input', () => {
+            const el = document.createElement('div');
+            el.innerText = input.value;
+            output.value = el.innerHTML;
+        });
+
+        function copyToClipboard() {
+            output.select();
+            document.execCommand('copy');
+            alert('SYSTEM: Entity Copied.');
+        }
+    </script>
 </body>
 </html>
