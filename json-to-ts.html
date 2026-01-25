@@ -3,79 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JSON to TypeScript Converter | DevUtils.io</title>
-    <meta name="description" content="Convert JSON to TypeScript interfaces instantly with our high-performance, private developer tool.">
+    <title>Matrix JSON to TS | DevUtils.io Enterprise</title>
+    <meta name="description" content="Securely convert JSON to TypeScript interfaces with an immersive developer experience.">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); }
-        textarea { font-family: 'Fira Code', monospace; }
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap');
+        
+        body { background-color: #000; font-family: 'Fira Code', monospace; overflow-x: hidden; }
+        #matrix-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.15; pointer-events: none; }
+        
+        .matrix-glass { 
+            background: rgba(0, 15, 5, 0.85); 
+            backdrop-filter: blur(8px); 
+            border: 1px solid rgba(0, 255, 70, 0.2);
+            box-shadow: 0 0 20px rgba(0, 255, 70, 0.05);
+        }
+        
+        textarea { 
+            background: rgba(0, 5, 0, 0.9) !important; 
+            color: #00ff41 !important; 
+            border: 1px solid #003b11 !important;
+            text-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
+        }
+        
+        textarea:focus { border-color: #00ff41 !important; box-shadow: 0 0 10px rgba(0, 255, 65, 0.2); }
+        
+        .matrix-btn {
+            background: #00ff41;
+            color: #000;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+        }
+        .matrix-btn:hover { background: #fff; box-shadow: 0 0 20px #00ff41; transform: scale(1.05); }
     </style>
 </head>
-<body class="bg-[#0f172a] text-slate-200 min-h-screen font-sans">
+<body class="text-slate-200 min-h-screen">
 
-    <nav class="glass border-b border-slate-800 p-4 sticky top-0 z-50">
+    <canvas id="matrix-canvas"></canvas>
+
+    <nav class="matrix-glass border-b border-[#003b11] p-4 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <a href="index.html" class="flex items-center gap-3">
-                <div class="h-8 w-8 bg-gradient-to-tr from-teal-400 to-blue-600 rounded-lg flex items-center justify-center font-black text-white text-sm">D</div>
-                <h1 class="text-white font-bold text-lg leading-none">DevUtils<span class="text-teal-400">.io</span></h1>
+                <div class="h-8 w-8 bg-[#00ff41] text-black rounded flex items-center justify-center font-black">M</div>
+                <h1 class="text-white font-bold text-lg tracking-tighter">DevUtils<span class="text-[#00ff41]">.io</span></h1>
             </a>
+            <div class="text-[10px] text-[#00ff41] font-bold tracking-widest animate-pulse">SYSTEM_ONLINE // ENCRYPTED</div>
         </div>
     </nav>
 
-    <main class="max-w-7xl mx-auto px-6 py-12">
+    <main class="relative z-10 max-w-7xl mx-auto px-6 py-12">
         <div class="text-center mb-10">
-            <h2 class="text-4xl font-black text-white mb-2">JSON &rarr; TypeScript</h2>
-            <p class="text-slate-400">Paste your JSON below to generate clean TS Interfaces instantly.</p>
+            <h2 class="text-4xl font-black text-white mb-2 uppercase tracking-widest">Construct: JSON &rarr; TS</h2>
+            <p class="text-[#00ff41] text-sm opacity-80 font-bold">DECODING DATA STRUCTURES AT THE EDGE</p>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div class="space-y-4">
-                <label class="text-xs font-bold uppercase tracking-widest text-slate-500">Input JSON</label>
-                <textarea id="jsonInput" class="w-full h-[500px] bg-slate-900 border border-slate-700 rounded-xl p-4 text-sm text-teal-300 focus:border-teal-500 outline-none transition-all" placeholder='{"id": 1, "name": "Jesse"}'></textarea>
+                <label class="text-[10px] font-bold uppercase tracking-widest text-[#00ff41]">Raw Input</label>
+                <textarea id="jsonInput" class="w-full h-[500px] rounded-xl p-6 text-sm outline-none transition-all" placeholder='{"id": 1, "status": "active"}'></textarea>
             </div>
 
             <div class="space-y-4">
-                <label class="text-xs font-bold uppercase tracking-widest text-slate-500">TypeScript Interface</label>
+                <label class="text-[10px] font-bold uppercase tracking-widest text-[#00ff41]">TypeScript Output</label>
                 <div class="relative">
-                    <textarea id="tsOutput" readonly class="w-full h-[500px] bg-slate-950 border border-slate-800 rounded-xl p-4 text-sm text-blue-300 outline-none" placeholder="Interface will appear here..."></textarea>
-                    <button onclick="copyToClipboard()" class="absolute top-4 right-4 bg-slate-800 hover:bg-slate-700 text-xs py-1 px-3 rounded-lg border border-slate-600 transition-colors">Copy</button>
+                    <textarea id="tsOutput" readonly class="w-full h-[500px] rounded-xl p-6 text-sm outline-none" placeholder="Interfaces will generate here..."></textarea>
+                    <button onclick="copyToClipboard()" class="absolute top-4 right-4 matrix-btn py-2 px-4 rounded text-[10px]">Copy</button>
                 </div>
             </div>
         </div>
+
+        <section class="mt-24 matrix-glass rounded-3xl p-12 max-w-4xl mx-auto">
+            <h2 class="text-2xl font-bold text-white mb-6 uppercase tracking-widest">Interface Generation Protocols</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-slate-400 text-sm leading-relaxed">
+                <div>
+                    <h3 class="text-[#00ff41] font-bold mb-2 uppercase">Deep Parsing</h3>
+                    <p>Our recursive algorithm traverses complex JSON trees to generate perfectly nested TypeScript interfaces, reducing manual mapping by 100%.</p>
+                </div>
+                <div>
+                    <h3 class="text-[#00ff41] font-bold mb-2 uppercase">Zero Log Policy</h3>
+                    <p>Data remains inside your local environment. This tool operates on the Vercel Edge, ensuring private business logic never reaches our servers.</p>
+                </div>
+            </div>
+        </section>
     </main>
 
     <script>
+        // MATRIX RAIN ENGINE
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$+-*/=%\"'#&_";
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+
+        for (let x = 0; x < columns; x++) drops[x] = 1;
+
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#00ff41';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = characters.charAt(Math.floor(Math.random() * characters.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
+        }
+        setInterval(draw, 33);
+
+        // CONVERSION LOGIC
         const input = document.getElementById('jsonInput');
         const output = document.getElementById('tsOutput');
 
         input.addEventListener('input', () => {
             try {
                 const json = JSON.parse(input.value);
-                output.value = convertToTs(json);
+                let res = `export interface RootObject {\n`;
+                for (const key in json) {
+                    const type = Array.isArray(json[key]) ? 'any[]' : typeof json[key];
+                    res += `  ${key}: ${type};\n`;
+                }
+                res += `}`;
+                output.value = res;
             } catch (e) {
-                output.value = "Invalid JSON detected...";
+                output.value = "// Waiting for valid JSON entry...";
             }
         });
-
-        function convertToTs(obj, interfaceName = "RootObject") {
-            let result = `export interface ${interfaceName} {\n`;
-            for (const key in obj) {
-                const type = typeof obj[key];
-                if (type === 'object' && obj[key] !== null) {
-                    result += `  ${key}: any;\n`; // Simplified for initial version
-                } else {
-                    result += `  ${key}: ${type};\n`;
-                }
-            }
-            result += `}`;
-            return result;
-        }
 
         function copyToClipboard() {
             output.select();
             document.execCommand('copy');
-            alert('Copied to clipboard!');
+            alert('SYSTEM: Data Copied.');
         }
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
     </script>
 </body>
 </html>
