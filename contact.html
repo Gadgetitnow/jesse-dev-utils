@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Uplink | DevUtils.io Matrix</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap');
+        body { background-color: #000; font-family: 'Fira Code', monospace; overflow-x: hidden; }
+        #matrix-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.1; pointer-events: none; }
+        .matrix-glass { background: rgba(0, 15, 5, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(0, 255, 70, 0.2); }
+        input, textarea, select { background: rgba(0, 5, 0, 0.9) !important; color: #00ff41 !important; border: 1px solid #003b11 !important; width: 100%; padding: 1rem; border-radius: 0.75rem; outline: none; margin-bottom: 1.5rem;}
+        input:focus, textarea:focus { border-color: #00ff41 !important; box-shadow: 0 0 10px rgba(0, 255, 65, 0.3); }
+        .matrix-btn { background: #00ff41; color: #000; font-weight: 900; width: 100%; padding: 1rem; border-radius: 0.75rem; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 2px; }
+        .matrix-btn:hover { background: #fff; box-shadow: 0 0 20px #00ff41; transform: translateY(-2px); }
+    </style>
+</head>
+<body class="text-slate-200 min-h-screen">
+    <canvas id="matrix-canvas"></canvas>
+    
+    <nav class="matrix-glass border-b border-[#003b11] p-4 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3">
+                <div class="h-8 w-8 bg-[#00ff41] text-black rounded flex items-center justify-center font-black">M</div>
+                <h1 class="text-white font-bold text-lg tracking-tighter">DevUtils<span class="text-[#00ff41]">.io</span></h1>
+            </a>
+            <div class="text-[10px] text-[#00ff41] font-bold tracking-widest animate-pulse">ENCRYPTION_CHANNEL // OPEN</div>
+        </div>
+    </nav>
+
+    <main class="relative z-10 max-w-2xl mx-auto px-6 py-20">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-black text-white mb-4 uppercase tracking-widest">Premium Inquiries</h2>
+            <p class="text-[#00ff41] text-sm font-bold">SECURE UPLINK FOR ENTERPRISE ACCESS & CUSTOM BUILDS</p>
+        </div>
+
+        <form action="mailto:your-email@example.com" method="post" enctype="text/plain" class="matrix-glass p-8 rounded-3xl border border-[#003b11]">
+            <label class="text-[10px] font-bold uppercase text-[#00ff41] mb-2 block">Identity (Email)</label>
+            <input type="email" name="email" placeholder="user@enterprise.com" required>
+            
+            <label class="text-[10px] font-bold uppercase text-[#00ff41] mb-2 block">Objective</label>
+            <select name="objective">
+                <option>Request Premium API Key</option>
+                <option>Custom Matrix Tool Build</option>
+                <option>Enterprise Licensing</option>
+                <option>Security Consultation</option>
+            </select>
+
+            <label class="text-[10px] font-bold uppercase text-[#00ff41] mb-2 block">Transmission Data</label>
+            <textarea name="message" rows="5" placeholder="Detail your enterprise requirements here..."></textarea>
+            
+            <button type="submit" class="matrix-btn">Send Transmission</button>
+        </form>
+    </main>
+
+    <script>
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        const characters = "01";
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+        for (let x = 0; x < columns; x++) drops[x] = 1;
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#00ff41'; ctx.font = fontSize + 'px monospace';
+            for (let i = 0; i < drops.length; i++) {
+                const text = characters.charAt(Math.floor(Math.random() * characters.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
+        }
+        setInterval(draw, 33);
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
