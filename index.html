@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevUtils | Enterprise Developer Suite</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX-Y"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-78V381YG6K"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'UA-XXXXX-Y');
+      gtag('config', 'G-78V381YG6K');
     </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevUtils | Enterprise Developer Suite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono&display=swap');
         body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #f8fafc; }
         .glass-panel { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); }
         .mono { font-family: 'JetBrains Mono', monospace; }
-        .gradient-border { border-image: linear-gradient(to right, #3b82f6, #8b5cf6) 1; }
         .ad-placeholder { background: repeating-linear-gradient(45deg, #1e293b, #1e293b 10px, #334155 10px, #334155 20px); }
+        .tab-active { border-bottom: 2px solid #a855f7; color: #a855f7 !important; }
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -29,9 +30,10 @@
             <h1 class="text-xl font-extrabold tracking-tight">Jesse<span class="text-purple-500">DevUtils</span></h1>
         </div>
         <div class="hidden md:flex gap-6 text-sm font-medium text-slate-400">
-            <button onclick="switchTab('json')" class="hover:text-white transition">JSON to TS</button>
-            <button onclick="switchTab('seo')" class="hover:text-white transition text-purple-400">SEO Generator</button>
-            <a href="#" class="hover:text-white transition">API Docs</a>
+            <button id="btn-json" onclick="switchTab('json')" class="hover:text-white transition tab-active">JSON to TS</button>
+            <button id="btn-seo" onclick="switchTab('seo')" class="hover:text-white transition">SEO Generator</button>
+            <span class="text-slate-700">|</span>
+            <span class="text-xs text-green-500 font-mono self-center">Live Analytics Active</span>
         </div>
     </nav>
 
@@ -41,7 +43,7 @@
             
             <div id="json-tool" class="tab-content">
                 <h2 class="text-3xl font-bold mb-2">JSON to TypeScript</h2>
-                <p class="text-slate-400 mb-8 italic text-sm">Convert raw data into Enterprise-Grade interfaces instantly.</p>
+                <p class="text-slate-400 mb-8 italic text-sm">Automated Interface Generation v2.1</p>
                 <textarea id="jsonInput" class="w-full h-64 bg-slate-900 border border-slate-700 rounded-xl p-4 mono text-sm outline-none focus:ring-2 focus:ring-purple-500 transition-all" placeholder='Paste your JSON here...'></textarea>
                 <button onclick="convertJson()" class="mt-4 bg-purple-600 hover:bg-purple-500 text-white font-bold py-3 px-8 rounded-lg transition-all shadow-lg shadow-purple-500/20">Generate Schema</button>
                 <pre id="jsonOutput" class="mt-8 p-6 bg-black/40 rounded-xl border border-slate-800 mono text-green-400 overflow-auto max-h-96"></pre>
@@ -49,7 +51,7 @@
 
             <div id="seo-tool" class="tab-content hidden">
                 <h2 class="text-3xl font-bold mb-2 text-purple-400">SEO Meta Generator</h2>
-                <p class="text-slate-400 mb-8 text-sm italic">Optimize your site's visibility for Google, Facebook, and Twitter.</p>
+                <p class="text-slate-400 mb-8 text-sm italic">Optimize for Google Search Console & Social Media.</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                     <input id="seoTitle" type="text" placeholder="Website Title" class="bg-slate-900 border border-slate-700 p-3 rounded-lg outline-none">
                     <input id="seoAuthor" type="text" placeholder="Author Name" class="bg-slate-900 border border-slate-700 p-3 rounded-lg outline-none">
@@ -61,30 +63,32 @@
         </main>
 
         <aside class="w-full md:w-80 border-l border-slate-800 p-6 bg-slate-900/30">
-            <div class="ad-placeholder w-full h-64 rounded-xl flex items-center justify-center mb-8 border border-slate-700">
-                <span class="text-slate-500 text-xs font-bold uppercase tracking-widest text-center px-4">Reserved for Revenue (Google AdSense)</span>
+            <div class="ad-placeholder w-full h-64 rounded-xl flex items-center justify-center mb-8 border border-slate-700 text-center">
+                <span class="text-slate-500 text-[10px] font-bold uppercase tracking-widest px-4 leading-relaxed">Revenue Slot:<br>Google AdSense Placeholder</span>
             </div>
             
             <div class="glass-panel p-6 rounded-2xl border-purple-500/20">
-                <h4 class="text-sm font-bold text-purple-400 uppercase tracking-widest mb-4">Affiliate Spotlight</h4>
-                <p class="text-xs text-slate-400 leading-relaxed mb-4">Boost your project speed with premium hosting and enterprise dev tools.</p>
-                <a href="#" class="block w-full py-2 bg-slate-800 hover:bg-slate-700 text-center rounded-lg text-xs font-bold transition">View Top Tools</a>
+                <h4 class="text-xs font-bold text-purple-400 uppercase tracking-widest mb-4">Strategic Partners</h4>
+                <p class="text-[11px] text-slate-400 leading-relaxed mb-4">High-performance hosting and AI dev tools for your next big project.</p>
+                <button class="w-full py-2 bg-slate-800 hover:bg-slate-700 text-center rounded-lg text-xs font-bold transition">Explore Assets</button>
             </div>
         </aside>
     </div>
 
-    <footer class="p-8 border-t border-slate-800 text-center text-slate-500 text-xs">
-        &copy; 2026 JesseDevUtils. Built for high-efficiency monetization.
+    <footer class="p-8 border-t border-slate-800 text-center text-slate-500 text-[10px] uppercase tracking-widest">
+        JesseDevUtils &bull; Enterprise-Grade Intelligence &bull; &copy; 2026
     </footer>
 
     <script>
-        // Tab Management
         function switchTab(tab) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
             document.getElementById(tab + '-tool').classList.remove('hidden');
+            
+            document.getElementById('btn-json').classList.remove('tab-active');
+            document.getElementById('btn-seo').classList.remove('tab-active');
+            document.getElementById('btn-' + tab).classList.add('tab-active');
         }
 
-        // JSON to TypeScript Logic
         function convertJson() {
             const input = document.getElementById('jsonInput').value;
             const output = document.getElementById('jsonOutput');
@@ -92,35 +96,30 @@
                 const parsed = JSON.parse(input);
                 let result = "export interface RootObject {\n";
                 for (const key in parsed) {
-                    const type = typeof parsed[key];
+                    const type = Array.isArray(parsed[key]) ? "any[]" : typeof parsed[key];
                     result += `  ${key}: ${type};\n`;
                 }
                 result += "}";
                 output.innerText = result;
+                // Tracking Event for Analytics
+                gtag('event', 'tool_use', {'tool_name': 'json_to_ts'});
             } catch (e) {
-                output.innerText = "Error: Invalid JSON format.";
+                output.innerText = "Error: Please check your JSON syntax.";
             }
         }
 
-        // STEP 1: SEO Tag Logic
         function generateSEO() {
             const title = document.getElementById('seoTitle').value;
             const desc = document.getElementById('seoDesc').value;
             const author = document.getElementById('seoAuthor').value;
             const output = document.getElementById('seoOutput');
 
-            let code = `\n`;
-            code += `<title>${title}</title>\n`;
-            code += `<meta name="description" content="${desc}">\n`;
-            code += `<meta name="author" content="${author}">\n\n`;
-            code += `\n`;
-            code += `<meta property="og:title" content="${title}">\n`;
-            code += `<meta property="og:description" content="${desc}">\n\n`;
-            code += `\n`;
-            code += `<meta name="twitter:title" content="${title}">\n`;
-            code += `<meta name="twitter:description" content="${desc}">`;
+            let code = `\n<title>${title}</title>\n<meta name="description" content="${desc}">\n<meta name="author" content="${author}">\n\n`;
+            code += `\n<meta property="og:title" content="${title}">\n<meta property="og:description" content="${desc}">\n<meta name="twitter:card" content="summary_large_image">`;
 
             output.innerText = code;
+            // Tracking Event for Analytics
+            gtag('event', 'tool_use', {'tool_name': 'seo_generator'});
         }
     </script>
 </body>
