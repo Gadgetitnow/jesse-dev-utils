@@ -26,32 +26,32 @@
 
     <nav class="p-6 border-b border-slate-800 flex justify-between items-center bg-slate-900/50">
         <div class="flex items-center gap-3">
-            <div class="h-8 w-8 bg-purple-600 rounded-lg flex items-center justify-center font-bold">D</div>
+            <div class="h-8 w-8 bg-purple-600 rounded-lg flex items-center justify-center font-bold shadow-lg shadow-purple-500/30">D</div>
             <h1 class="text-xl font-extrabold tracking-tight">Jesse<span class="text-purple-500">DevUtils</span></h1>
         </div>
         <div class="hidden md:flex gap-6 text-sm font-medium text-slate-400">
             <button id="btn-json" onclick="switchTab('json')" class="hover:text-white transition tab-active">JSON to TS</button>
-            <button id="btn-seo" onclick="switchTab('seo')" class="hover:text-white transition">SEO Generator</button>
+            <button id="btn-seo" onclick="switchTab('seo')" class="hover:text-white transition">SEO Meta</button>
+            <button id="btn-glass" onclick="switchTab('glass')" class="hover:text-white transition">Glass UI</button>
             <span class="text-slate-700">|</span>
-            <span class="text-xs text-green-500 font-mono self-center">Live Tracking Enabled</span>
+            <span class="text-xs text-green-500 font-mono animate-pulse">● Analytics Live</span>
         </div>
     </nav>
 
     <div class="flex-grow flex flex-col md:flex-row">
-        
         <main class="flex-grow p-6 md:p-12">
             
             <div id="json-tool" class="tab-content">
                 <h2 class="text-3xl font-bold mb-2">JSON to TypeScript</h2>
-                <p class="text-slate-400 mb-8 italic text-sm">Convert data to Enterprise-Grade schemas instantly.</p>
-                <textarea id="jsonInput" class="w-full h-64 bg-slate-900 border border-slate-700 rounded-xl p-4 mono text-sm outline-none focus:ring-2 focus:ring-purple-500 transition-all" placeholder='Paste JSON here...'></textarea>
+                <p class="text-slate-400 mb-8 italic text-sm">Enterprise Schema Generation</p>
+                <textarea id="jsonInput" class="w-full h-64 bg-slate-900 border border-slate-700 rounded-xl p-4 mono text-sm outline-none focus:ring-2 focus:ring-purple-500" placeholder='Paste JSON here...'></textarea>
                 <button onclick="convertJson()" class="mt-4 bg-purple-600 hover:bg-purple-500 text-white font-bold py-3 px-8 rounded-lg transition-all shadow-lg shadow-purple-500/20">Generate Schema</button>
                 <pre id="jsonOutput" class="mt-8 p-6 bg-black/40 rounded-xl border border-slate-800 mono text-green-400 overflow-auto max-h-96"></pre>
             </div>
 
             <div id="seo-tool" class="tab-content hidden">
                 <h2 class="text-3xl font-bold mb-2 text-purple-400">SEO Meta Generator</h2>
-                <p class="text-slate-400 mb-8 text-sm italic">Optimize for Search Engine visibility.</p>
+                <p class="text-slate-400 mb-8 text-sm italic">Optimization Hub v2.0</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                     <input id="seoTitle" type="text" placeholder="Website Title" class="bg-slate-900 border border-slate-700 p-3 rounded-lg outline-none">
                     <input id="seoAuthor" type="text" placeholder="Author Name" class="bg-slate-900 border border-slate-700 p-3 rounded-lg outline-none">
@@ -60,29 +60,73 @@
                 <button onclick="generateSEO()" class="bg-purple-600 hover:bg-purple-500 text-white font-bold py-3 px-8 rounded-lg transition-all">Generate Tags</button>
                 <pre id="seoOutput" class="mt-8 p-6 bg-black/40 rounded-xl border border-slate-800 mono text-blue-400 overflow-auto"></pre>
             </div>
+
+            <div id="glass-tool" class="tab-content hidden">
+                <h2 class="text-3xl font-bold mb-2 text-blue-400">Glass UI Generator</h2>
+                <p class="text-slate-400 mb-8 text-sm italic">Modern Glassmorphism Styles</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="space-y-4 bg-slate-900/50 p-6 rounded-xl border border-slate-800">
+                        <label class="block text-xs font-bold uppercase tracking-widest text-slate-500">Opacity</label>
+                        <input type="range" id="glassOpacity" min="0.1" max="0.9" step="0.05" value="0.7" oninput="updateGlass()" class="w-full">
+                        <label class="block text-xs font-bold uppercase tracking-widest text-slate-500">Blur</label>
+                        <input type="range" id="glassBlur" min="0" max="20" step="1" value="12" oninput="updateGlass()" class="w-full">
+                    </div>
+                    <div id="glassPreview" class="h-40 w-full rounded-2xl flex items-center justify-center text-sm font-bold" style="background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1);">
+                        Preview Box
+                    </div>
+                </div>
+                <pre id="glassOutput" class="mt-8 p-6 bg-black/40 rounded-xl border border-slate-800 mono text-yellow-400"></pre>
+            </div>
         </main>
 
         <aside class="w-full md:w-80 border-l border-slate-800 p-6 bg-slate-900/30">
-            <div class="ad-placeholder w-full h-64 rounded-xl flex items-center justify-center mb-8 border border-slate-700">
-                <span class="text-slate-500 text-[10px] font-bold uppercase tracking-widest text-center px-4">Reserved for Revenue (Google AdSense)</span>
+            <div class="ad-placeholder w-full h-64 rounded-xl flex items-center justify-center mb-8 border border-slate-700 text-center">
+                <span class="text-slate-500 text-[10px] font-bold uppercase tracking-widest px-4">Reserved for Revenue (Google AdSense)</span>
             </div>
-            
             <div class="glass-panel p-6 rounded-2xl border-purple-500/20">
-                <h4 class="text-xs font-bold text-purple-400 uppercase tracking-widest mb-4">Dev Assets</h4>
-                <p class="text-[11px] text-slate-400 leading-relaxed mb-4">Premium tools to accelerate your enterprise development.</p>
-                <button class="w-full py-2 bg-slate-800 hover:bg-slate-700 text-center rounded-lg text-xs font-bold transition">View Portfolio</button>
+                <h4 class="text-xs font-bold text-purple-400 uppercase tracking-widest mb-4">Strategic Partners</h4>
+                <p class="text-[11px] text-slate-400 leading-relaxed mb-4">Scale your enterprise apps with high-performance edge hosting.</p>
+                <button class="w-full py-2 bg-slate-800 hover:bg-slate-700 text-center rounded-lg text-xs font-bold transition">Explore Assets</button>
             </div>
         </aside>
     </div>
-
-    <footer class="p-8 border-t border-slate-800 text-center text-slate-500 text-[10px] uppercase tracking-widest">
-        JesseDevUtils &bull; &copy; 2026
-    </footer>
 
     <script>
         function switchTab(tab) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
             document.getElementById(tab + '-tool').classList.remove('hidden');
-            document.getElementById('btn-json').classList.remove('tab-active');
-            document.getElementById('btn-seo').classList.remove('tab-active');
+            document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('tab-active'));
             document.getElementById('btn-' + tab).classList.add('tab-active');
+            gtag('event', 'page_view', {'page_title': tab});
+        }
+
+        function convertJson() {
+            const input = document.getElementById('jsonInput').value;
+            const output = document.getElementById('jsonOutput');
+            try {
+                const parsed = JSON.parse(input);
+                let res = "export interface Root {\n";
+                for (let k in parsed) res += `  ${k}: ${typeof parsed[k]};\n`;
+                output.innerText = res + "}";
+                gtag('event', 'tool_use', {'tool': 'json_to_ts'});
+            } catch (e) { output.innerText = "Invalid JSON"; }
+        }
+
+        function generateSEO() {
+            const t = document.getElementById('seoTitle').value;
+            const d = document.getElementById('seoDesc').value;
+            document.getElementById('seoOutput').innerText = `<title>${t}</title>\n<meta name="description" content="${d}">`;
+            gtag('event', 'tool_use', {'tool': 'seo_gen'});
+        }
+
+        function updateGlass() {
+            const o = document.getElementById('glassOpacity').value;
+            const b = document.getElementById('glassBlur').value;
+            const style = `background: rgba(30, 41, 59, ${o});\nbackdrop-filter: blur(${b}px);\nborder: 1px solid rgba(255,255,255,0.1);`;
+            document.getElementById('glassPreview').setAttribute('style', style);
+            document.getElementById('glassOutput').innerText = style;
+        }
+        updateGlass();
+    </script>
+</body>
+</html>
